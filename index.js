@@ -7,5 +7,5 @@ app.get('/', (req, res) => {
 
 // dynamically set port from environment variables (for Heroku)
 // provide alternate of port 5000 if working in dev environment
-const PORT = process.env.port || 5000
+const PORT = process.env.PORT || 5000
 app.listen(PORT)
