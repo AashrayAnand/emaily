@@ -1,7 +1,11 @@
 const express = require('express')
+const mongoose = require('mongoose')
 const app = express()
-const passportConfig = require('./services/passport')
+const keys = require('./config/keys')
+require('./services/passport')
 
+// connect mongoose to remotely hosted MongoDB
+mongoose.connect(keys.mongoURI)
 // in auth_routes, we export two functions, given an express
 // app object, auth_routs wraps 2 get route handlers to the given
 // express object, the below line therefore adds these route handlers

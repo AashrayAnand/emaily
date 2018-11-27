@@ -1,6 +1,10 @@
 const passport = require('passport')
 
 module.exports = app => {
+
+    app.get('/', (req, res) => {
+        res.send({'hi' : 'there'})
+    })
     // route handler for sending user through authentication flow
     app.get('/auth/google', passport.authenticate('google', {
                 // specifies access to profile information of 
