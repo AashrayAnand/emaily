@@ -2,8 +2,10 @@ const express = require('express')
 const mongoose = require('mongoose')
 const app = express()
 const keys = require('./config/keys')
+// require mongoose user schema
+require('./models/users')
+// require passport.js configuration
 require('./services/passport')
-
 // connect mongoose to remotely hosted MongoDB
 mongoose.connect(keys.mongoURI)
 // in auth_routes, we export two functions, given an express
