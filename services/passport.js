@@ -27,12 +27,14 @@ passport.deserializeUser((userId, done) => {
     })
 })
 
+
 // pass strategy configuration to passport, tells passport to
 // authenticate using google OAuth strategy
 passport.use(new GoogleOAuth({
     clientID: keys.googleClientID,
     clientSecret: keys.googleClientSecret,
-    callbackURL: '/auth/google/callback'
+    callbackURL: '/auth/google/callback',
+    proxy: true
     }, (accessToken, refreshToken, profile, done) => {
             console.log('access token ', accessToken)
             console.log('refresh token ', refreshToken)
