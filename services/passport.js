@@ -7,6 +7,7 @@ const mongoose = require('mongoose')
 const User = mongoose.model('users')
 
 // serializeUser function, used to convert User instance to a unique cookie
+// the result of serializeUser is stored in req.session.passport.user = {}
 passport.serializeUser((user, done) => {
     // serializeUser takes a User isntance, and the
     // done argument
@@ -38,7 +39,7 @@ passport.use(new GoogleOAuth({
             console.log('profile: ', profile)
             // check if user has signed up before, before adding new record
             User.findOne({ googleID : profile.id }).then(existingUser => {
-                if(existingUser){                    
+                if(existingUser){      
                     // return new user, if no existing user exists
                     done(null, existingUser)
                 } else {

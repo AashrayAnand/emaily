@@ -1,7 +1,22 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const app = express()
+const cookieSession = require('cookie-session')
+const passport = require('passport')
 const keys = require('./config/keys')
+
+// enable cookies
+app.use(
+    cookieSession({
+        // 30 days max age in ms
+        maxAge : 30 * 24 * 60 * 60 * 1000,
+        // randomly generated cookieKey
+        keys : [keys.cookieKey]
+    })
+)
+
+app.use(passport.initialize())
+app.use(passport.session())
 // require mongoose user schema
 require('./models/users')
 // require passport.js configuration
